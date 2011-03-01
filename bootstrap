@@ -1,0 +1,16 @@
+#!/bin/bash
+
+die() {
+  echo $@
+  exit 1
+}
+
+run() {
+  echo $@
+  "$@" || die "$1 failed"
+}
+
+run libtoolize --automake
+run aclocal
+run automake --foreign --add-missing --copy
+run autoconf

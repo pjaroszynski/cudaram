@@ -1,0 +1,15 @@
+# autotools
+aclocal.m4
+autom4te.cache/
+Makefile
+/Makefile.in
+config.*
+configure
+depcomp
+.deps
+install-sh
+libtool
+ltmain.sh
+missing
+
+*.o

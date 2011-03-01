@@ -1,0 +1,20 @@
+ifndef KBUILD_EXTMOD
+
+KDIR = @KDIR@
+
+all: module
+
+module:
+	$(MAKE) -C $(KDIR) M=$(shell pwd) modules
+
+clean:
+	$(MAKE) -C $(KDIR) M=$(shell pwd) clean
+
+install:
+	$(MAKE) -C $(KDIR) INSTALL_MOD_PATH=$(DESTDIR) M=$(shell pwd) modules_install
+
+else
+
+obj-m        = cudaram.o
+
+endif

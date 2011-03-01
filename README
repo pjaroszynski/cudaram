@@ -1,0 +1,33 @@
+cudaram - block device in CUDA RAM
+
+###
+### Build
+###
+
+$ ./bootstrap
+$ ./configure [--with-kernel=path_to_kernel] [--with-cuda=path_to_cuda_toolkit] [--enable-debug]
+$ make
+
+###
+### Use
+###
+- Load the module
+# insmod kmod/cudaram.ko
+- /dev/cudaram* /dev/cudaramctl* should be created
+- Start the daemon, the params are cudaram_id and capacity_in_MB
+# ./cudaramd/cudaramd 0 400
+- Use the block device, e.g. create an ext2 fs on it
+# mkfs.ext2 /dev/cudaram0
+- And mount it
+# mount /dev/cudaram0 /mnt/foo
+
+###
+### Stop using
+###
+- Unmount
+# umount /dev/cudaram0
+- Kill the daemon
+# ^C or kill
+- Unload the module
+# rmmod cudaram
+
